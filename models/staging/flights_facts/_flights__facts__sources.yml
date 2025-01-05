@@ -1,0 +1,52 @@
+sources:
+  - name: demo_src
+    description: Данные из БД авиаперелетов
+    tables: 
+      - name: boarding_passes
+        description: Посадочный талон
+        columns: 
+          - name: ticket_no
+            description: Номер билета
+            tests:
+              - not_null
+          - name: flight_id
+            description: Идентификатор рейса
+          - name: boarding_no
+            description: Номер посадочного талона
+          - name: seat_no 
+            description: Номер места
+      - name: flights
+        description: Рейсы
+        columns: 
+          - name: flight_id
+          - name: flight_no
+          - name: scheduled_departure
+          - name: scheduled_arrival
+          - name: departure_airport
+          - name: arrival_airport
+          - name: status
+          - name: aircraft_code
+          - name: actual_departure
+          - name: actual_arrival
+        freshness:
+          warn_after:
+            count: 600000
+            period: hour
+          error_after:
+            count: 10000
+            period: day
+          filter: current_timestamp::date - actual_departure::date < 30000
+        loaded_at_field: actual_departure::timestamp
+      - name: ticket_flights
+        columns: 
+          - name: ticket_no
+          - name: flight_id
+          - name: fare_conditions
+          - name: amount
+      - name: tickets
+        columns: 
+          - name: ticket_no
+          - name: book_ref
+          - name: passenger_id
+          - name: passenger_name
+          - name: contact_data
