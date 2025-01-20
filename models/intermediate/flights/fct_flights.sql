@@ -1,6 +1,6 @@
 {{
   config(
-    materialized = 'table'
+    materialized = 'table',
     )
 }}
 select
@@ -14,7 +14,5 @@ select
     aircraft_code,
     actual_departure,
     actual_arrival
-
-from {{ source('demo_src', 'flights') }}
---{{ limit_data(column_name = 'flight_id', rows = 300) }}
-  
+  from
+    {{ ref('stg_flights__facts__flights') }}
