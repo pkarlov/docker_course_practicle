@@ -1,6 +1,7 @@
 {{
     config(
         materialized = 'table',
+        tags = ['bookings']
         )
 
 }}
@@ -10,4 +11,3 @@
         total_amount
     from {{ source('demo_src', 'bookings') }}
 
-{{ limit_data(column_name = 'book_date', rows = 300) }}

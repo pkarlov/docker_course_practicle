@@ -17,7 +17,7 @@ models:
 
     columns:
       - name: book_ref
-        data_type: bpchar(6)
+        data_type: bpchar(8)
         constraints:
           - type: not_null
       - name: book_date  
