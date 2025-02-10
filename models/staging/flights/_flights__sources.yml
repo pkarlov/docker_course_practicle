@@ -38,6 +38,8 @@ sources:
             description: Номер места
           - name: fare_conditions
             description: Класс места
+          - name: id
+            description: Software DOOM добавленный столбец с идентификатором
       - name: bookings
         columns:
           - name: book_ref    
