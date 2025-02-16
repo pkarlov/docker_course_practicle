@@ -13,8 +13,6 @@ models:
       owner: "amelinvld@gmail.com"
       contact_tg: vladamelin
       status: in_dev
-
-
     columns:
       - name: book_ref
         data_type: bpchar(8)
