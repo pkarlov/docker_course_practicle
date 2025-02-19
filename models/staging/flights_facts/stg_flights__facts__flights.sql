@@ -19,9 +19,9 @@ select
     actual_arrival
 
 from {{ source('demo_src', 'flights') }}
-{% if is_incremental() %}
+{#{% if is_incremental() %}
 where 
     scheduled_departure > (SELECT MAX(scheduled_departure) FROM {{ source('demo_src', 'flights') }}) - interval '100 day'
-{% endif %}
+{% endif %}#}
 
   
