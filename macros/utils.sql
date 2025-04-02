@@ -131,3 +131,54 @@
     {%- do return('SELECT NULL') -%}
   {%- endif -%}
 {% endmacro %}
+
+{% macro check_dependencies1() %}
+    {% set dependent_objects_count = 0 %}
+
+    {% for source in this.depends_on %}
+        
+            {% set dependent_objects_count = dependent_objects_count + 1 %}
+        
+    {% endfor %}
+
+    {% if dependent_objects_count > 0 %}
+        ⚠️ Модель {{ this.name }} зависит от {{ dependent_objects_count }} объектов!
+        {% do exceptions.warn("⚠️ Модель " ~ this.name ~ " зависит от " ~ dependent_objects_count ~ " объектов!" ) %}
+    {% endif %}
+{% endmacro %}
+
+
+{% macro check_dependencies() %}
+
+{# Получаем текущую модель #}
+{% set current_model = model %}
+
+{# Получаем все зависимости текущей модели #}
+{% set dependencies = current_model.depends_on.nodes %}
+
+{# Считаем количество зависимостей #}
+{% set dependency_count = dependencies | length %}
+
+{# Если зависимостей больше одной, выводим предупреждение #}
+{% if dependency_count > 1 %}
+    {{ log("⚠️ Model " ~ current_model.name ~ " depend on " ~ dependency_count ~ " objects!", info=True) }}
+    {% do exceptions.warn("⚠️ Model " ~ current_model.name ~ " depend on " ~ dependency_count ~ " objects!" ) %}
+{% endif %}
+
+{% endmacro %}
+
+{% macro check_dependencies2(model) %}
+    {% set dependencies = model.depends_on %}
+    {% set dependencies_count = dependencies|length %}
+
+    {% do log("Количество зависимостей модели " ~ model.name ~ ": " ~ dependencies_count, info=True) %}
+
+    {% if dependencies_count > 1 %}
+        {% do exceptions.warn("⚠️ Модель " ~ current_model.name ~ " зависит от " ~ dependency_count ~ " объектов!" ) %}
+        {% do log("⚠️ Модель " ~ model.name ~ " зависит от " ~ dependencies_count ~ " объектов!", info=True) %}
+    {% endif %}
+{% endmacro %}
+
+{% macro check_dependencies3(model) %}
+    {% do log("DEBUG: depends_on = " ~ model.depends_on, info=True) %}
+{% endmacro %}
