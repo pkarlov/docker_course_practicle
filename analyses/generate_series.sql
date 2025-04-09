@@ -1,0 +1,1 @@
+{{ dbt_utils.log_info("my pretty message") }}

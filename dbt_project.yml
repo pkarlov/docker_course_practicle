@@ -63,3 +63,6 @@ models:
 seeds:
   dbt_course_practice:
     schema: seeds
+    
+vars:
+  surrogate_key_treat_nulls_as_empty_strings: true #turn on legacy behaviour

@@ -17,6 +17,9 @@ sources:
             description: Номер места
       - name: flights
         description: Рейсы
+        tests:
+          - dbt_utils.equal_rowcount:
+              compare_model: ref('fct_flights')
         columns: 
           - name: flight_id
           - name: flight_no
