@@ -13,4 +13,4 @@ select
   from
     {{ ref('stg_flights__bookings') }}
 
-{{ dbt_utils.generate_surrogate_key(['book_ref']) }}
+{# dbt_utils.generate_surrogate_key(['book_ref']) #}

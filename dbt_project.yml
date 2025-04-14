@@ -66,3 +66,5 @@ seeds:
     
 vars:
   surrogate_key_treat_nulls_as_empty_strings: true #turn on legacy behaviour
+
+on-run-end: "{{ dbt_project_evaluator.print_dbt_project_evaluator_issues() }}"  

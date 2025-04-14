@@ -1,0 +1,27 @@
+`analysis.dbt_cource_practice.fligths_future `
+may lead to errors when using dbt. Run again with `--debug` to see them all. For
+more information:
+https://docs.getdbt.com/reference/global-configs/legacy-behaviors
+There are 1 unused configuration paths:
+- seeds.dbt_course_practice
+{{ config(materialized='table') }}
+
+with source as (
+
+    select * from {{ source('demo_src', 'aircrafts') }}
+
+),
+
+renamed as (
+
+    select
+        aircraft_code,
+        model,
+        range
+
+    from source
+
+)
+
+select * from renamed
+
