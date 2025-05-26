@@ -18,10 +18,3 @@ select
   from
     {{ ref('stg_flights__facts__flights') }}
 
- -- 3 (2/3). С помощью макроса get_column_values получить все уникальные значения статуса полетов (поле status модели fct_fligths). Вывести их в логи, при обновлении модели fct_fligths.
-
-{% set uniqs = dbt_utils.get_column_values(table=ref('fct_flights'), column='status') %}
-
-{% for uniq in uniqs %}
-    --{{uniq}}
-{% endfor %}

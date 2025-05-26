@@ -3,8 +3,6 @@ packages:
     version: 1.3.0
   - package: dbt-labs/codegen
     version: 0.13.1
-  - package: dbt-labs/dbt_project_evaluator
-    version: 1.0.0
   - package: Datavault-UK/automate_dv
     version: 0.11.2
-sha1_hash: dba7858455ebb64727d984c01b34b08b3bbfe0bc
+sha1_hash: 67de23afb461348f05486b02224afd28cd871aee

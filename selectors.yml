@@ -1,0 +1,8 @@
+selectors:
+  - name: filed_testst
+    definition: '1+result:fail'
+  - name: incremental_models
+    description: "Все модели с materialized='incremental'"
+    definition:
+      method: config.materialized
+      value: incremental
